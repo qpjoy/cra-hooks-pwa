@@ -1,5 +1,5 @@
-const path = require("path")
-const { paths } = require("react-app-rewired")
+const path = require("path");
+const { paths } = require("react-app-rewired");
 
 const {
   override,
@@ -7,13 +7,13 @@ const {
   addDecoratorsLegacy,
   addPostcssPlugins,
   addWebpackAlias,
-  addWebpackModuleRule
+  addWebpackModuleRule,
   // addLessLoader
-} = require("customize-cra")
+} = require("customize-cra");
 
 const config = require(`${paths.scriptVersion}/config/webpack.config.js`)(
-  process.env.NODE_ENV
-)
+  process.env.NODE_ENV,
+);
 
 //生产环境去除console.* functions
 const overridePlugins = () => {
@@ -22,13 +22,14 @@ const overridePlugins = () => {
       config.optimization.minimizer.forEach(minimizer => {
         if (minimizer.constructor.name === "TerserPlugin") {
           //   minimizer.options.terserOptions.compress.drop_console = true
-          minimizer.options.terserOptions.keep_fnames = true
+          minimizer.options.terserOptions.keep_fnames = true;
         }
-      })
+      });
     }
-    return config
-  }
-}
+
+    return config;
+  };
+};
 
 module.exports = override(
   // 关于webpack的相关配置
@@ -39,7 +40,7 @@ module.exports = override(
   //   }),
   addDecoratorsLegacy(),
   addWebpackAlias({
-    "@": path.resolve(__dirname, "./src")
+    "@": path.resolve(__dirname, "./src"),
   }),
   // addLessLoader({
   //   javascriptEnabled: true
@@ -52,15 +53,15 @@ module.exports = override(
       {
         loader: "sass-resources-loader",
         options: {
-          resources: path.resolve(__dirname, "./src/assets/sass/global.scss")
-        }
-      }
-    ])
+          resources: path.resolve(__dirname, "./src/assets/sass/global.scss"),
+        },
+      },
+    ]),
   }),
   addPostcssPlugins([
     require("postcss-pxtorem")({
       rootValue: 100,
-      propWhiteList: []
+      propWhiteList: [],
       // unitPrecision: 5,
       // propList: ['*'],
       // selectorBlackList: [],
@@ -70,17 +71,17 @@ module.exports = override(
     }),
     require("cssnano")({
       autoprefixer: false,
-      "postcss-zindex": false
+      "postcss-zindex": false,
     }),
     require("postcss-write-svg")({
-      utf8: false
-    })
+      utf8: false,
+    }),
   ]),
-  overridePlugins()
-)
+  overridePlugins(),
+);
 
 function appendScssLoader(Loader) {
-  let scssLoader = [...config.module.rules[2].oneOf[5].use, ...Loader]
+  let scssLoader = [...config.module.rules[2].oneOf[5].use, ...Loader];
 
-  return scssLoader
+  return scssLoader;
 }

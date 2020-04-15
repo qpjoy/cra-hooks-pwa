@@ -28,6 +28,7 @@
     "@typescript-eslint/no-explicit-any": ["off", { "ignoreRestArgs": true }],
     "node/no-unsupported-features/es-syntax": "off",
     "node/no-unpublished-import": "off",
+    "node/no-missing-import": "off",
     "react/jsx-filename-extension": [
       "error",
       { "extensions": [".js", ".jsx", ".ts", ".tsx"] }
