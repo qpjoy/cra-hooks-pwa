@@ -8,7 +8,7 @@
 
 ### prettier
 
-1. yarn add prettier-eslint prettier-stylelint eslint-config-stylelint stylelint stylelint-order stylelint-prettier -D
+1. yarn add prettier-eslint prettier-stylelint eslint-config-stylelint eslint-plugin-prettier stylelint stylelint-order stylelint-prettier -D
 
 ### install vscode plugins (CONTROL + P)
 

@@ -2,8 +2,8 @@
   "parser": "babel-eslint",
   "env": {
     // "es6": true,
-    "browser": true,
-    "node": true
+    "browser": true
+    // "node": true
   },
   "extends": [
     "react-app",
@@ -26,6 +26,8 @@
     "@typescript-eslint/prefer-regexp-exec": "off",
     "react/jsx-one-expression-per-line": ["off", { "allow": "single-child" }],
     "@typescript-eslint/no-explicit-any": ["off", { "ignoreRestArgs": true }],
+    "node/no-unsupported-features/es-syntax": "off",
+    "node/no-unpublished-import": "off",
     "react/jsx-filename-extension": [
       "error",
       { "extensions": [".js", ".jsx", ".ts", ".tsx"] }
