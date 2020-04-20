@@ -1,11 +1,15 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import loadable from "@loadable/component";
 
 import MainLayout from "@/components/layout/MainLayout";
 
 import Home from "@/components/home/Home";
 import About from "@/components/about/About";
-import Contact from "@/components/contact/Contact";
+
+const LazyContact = loadable(() => import("@/components/contact/Contact"), {
+  fallback: <div>nothing</div>,
+});
 
 function Routers() {
   return (
@@ -29,9 +33,7 @@ function Routers() {
           <Route path="/about">
             <About />
           </Route>
-          <Route path="/contact">
-            <Contact />
-          </Route>
+          <Route path="/contact" render={() => <LazyContact />} />
         </Switch>
       </MainLayout>
     </Router>
