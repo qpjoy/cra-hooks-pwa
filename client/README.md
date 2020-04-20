@@ -1,3 +1,7 @@
+### init
+
+1. yarn create react-app cra-hooks-pwa
+
 ### scaffold
 
 1. yarn add customize-cra react-app-rewired
@@ -19,3 +23,7 @@
 ### husky
 
 1. yarn add pretty-quick husky --dev
+
+###
+
+1. yarn add react-router-dom @loadable/component

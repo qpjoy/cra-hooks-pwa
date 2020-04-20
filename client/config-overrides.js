@@ -53,7 +53,7 @@ module.exports = override(
       {
         loader: "sass-resources-loader",
         options: {
-          resources: path.resolve(__dirname, "./src/assets/sass/global.scss"),
+          resources: path.resolve(__dirname, "src/assets/sass/global.scss"),
         },
       },
     ]),

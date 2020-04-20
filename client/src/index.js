@@ -1,9 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import "./index.css";
+import "./index.scss";
 import App from "./App";
 import "react-app-polyfill/stable";
-import "amfe-flexible";
+import "@/utils/libs/amfe-flexible";
 import * as serviceWorker from "./serviceWorker";
 
 ReactDOM.render(
