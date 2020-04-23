@@ -8,6 +8,7 @@ const {
   addPostcssPlugins,
   addWebpackAlias,
   addWebpackModuleRule,
+  // adjustWorkbox,
   // addLessLoader
 } = require("customize-cra");
 
@@ -15,17 +16,71 @@ const config = require(`${paths.scriptVersion}/config/webpack.config.js`)(
   process.env.NODE_ENV,
 );
 
+const { GenerateSW } = require("workbox-webpack-plugin");
+
 //生产环境去除console.* functions
-const overridePlugins = () => {
+// const overridePlugins = () => {
+//   return config => {
+//     if (config.optimization.minimizer) {
+//       config.optimization.minimizer.forEach(minimizer => {
+//         if (minimizer.constructor.name === "TerserPlugin") {
+//           //   minimizer.options.terserOptions.compress.drop_console = true
+//           minimizer.options.terserOptions.keep_fnames = true;
+//         }
+//       });
+//     }
+
+//     return config;
+//   };
+// };
+
+const overrideWorkbox = () => {
   return config => {
-    if (config.optimization.minimizer) {
-      config.optimization.minimizer.forEach(minimizer => {
-        if (minimizer.constructor.name === "TerserPlugin") {
-          //   minimizer.options.terserOptions.compress.drop_console = true
-          minimizer.options.terserOptions.keep_fnames = true;
-        }
-      });
-    }
+    // console.log(env, `[WorkBox] this is env`);
+
+    // console.log(
+    //   `[Workbox default config] ${JSON.stringify(defaultInjectConfig)}`,
+    // );
+    // // if (env === "production") {
+    // console.log("Production build - Adding Workbox for PWAs");
+    // const workboxConfig = {
+    //   ...defaultInjectConfig,
+    //   swSrc: path.join(__dirname, "src", "custom-sw.js"),
+    //   // swSrc: path.join(process.cwd(), "/app/resources/service-worker.js"),
+    //   swDest: "sw.js",
+    // };
+
+    // config = rewireWorkboxInject(workboxConfig)(config, env);
+    // // }
+    config = removePreWorkboxWebpackPluginConfig(config);
+
+    // let workboxPlugin = new InjectManifest({
+    //   swSrc: path.join(__dirname, "src", "custom-sw.js"),
+    //   swDest: "service-worker.js",
+    //   include: [/\.html$/, /\.js$/, /\.css$/, /\.woff2$/, /\.jpg$/, /\.png$/],
+    //   exclude: [/\.map$/, /asset-manifest\.json$/],
+    // });
+    const publicUrl = process.env.PUBLIC_URL;
+
+    console.log(`[Workbox] ${publicUrl}`);
+
+    let workboxPlugin = new GenerateSW({
+      clientsClaim: true,
+      exclude: [/\.map$/, /asset-manifest\.json$/],
+      importWorkboxFrom: "cdn",
+      navigateFallback: `${publicUrl}/index.html`,
+      navigateFallbackBlacklist: [
+        // Exclude URLs starting with /_, as they're likely an API call
+        new RegExp("^/_"),
+        // Exclude any URLs whose last part seems to be a file extension
+        // as they're likely a resource and not a SPA route.
+        // URLs containing a "?" character won't be blacklisted as they're likely
+        // a route with query params (e.g. auth callbacks).
+        new RegExp("/[^/?]+\\.[^/]+$"),
+      ],
+    });
+
+    config.plugins = [...config.plugins, workboxPlugin];
 
     return config;
   };
@@ -77,11 +132,24 @@ module.exports = override(
       utf8: false,
     }),
   ]),
-  overridePlugins(),
+  // overridePlugins(),
+  overrideWorkbox(),
 );
 
 function appendScssLoader(Loader) {
   let scssLoader = [...config.module.rules[2].oneOf[5].use, ...Loader];
 
   return scssLoader;
+}
+
+function removePreWorkboxWebpackPluginConfig(config) {
+  const preWorkboxPluginIndex = config.plugins.findIndex(element => {
+    return Object.getPrototypeOf(element).constructor.name === "GenerateSW";
+  });
+
+  if (preWorkboxPluginIndex !== -1) {
+    config.plugins.splice(preWorkboxPluginIndex, 1);
+  }
+
+  return config;
 }

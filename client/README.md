@@ -27,3 +27,7 @@
 ###
 
 1. yarn add react-router-dom @loadable/component
+
+### workbox
+
+1. yarn add workbox-webpack-plugin react-app-rewire-workbox

@@ -30,10 +30,10 @@ function Routers() {
           <Route exact path="/">
             <Home />
           </Route>
-          <Route path="/about">
+          <Route exact path="/about">
             <About />
           </Route>
-          <Route path="/contact" render={() => <LazyContact />} />
+          <Route exact path="/contact" render={() => <LazyContact />} />
         </Switch>
       </MainLayout>
     </Router>

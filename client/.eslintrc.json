@@ -31,6 +31,13 @@
     "node/no-unpublished-require": "off",
     "node/no-missing-import": "off",
     "prefer-rest-params": "off",
+    "no-restricted-globals": "off",
+    "no-param-reassign": "off",
+    "eslint-comments/no-unused-disable": "off",
+    "eslint-comments/no-unlimited-disable": "off",
+    "node/no-extraneous-import": "off",
+    "prefer-regex-literals": "off",
+    "node/no-extraneous-require": "off",
     "react/jsx-filename-extension": [
       "error",
       { "extensions": [".js", ".jsx", ".ts", ".tsx"] }
@@ -56,7 +63,6 @@
         "message": "Unexpected property on console object was called"
       }
     ],
-    "no-param-reassign": [2, { "props": false }],
     "prettier/prettier": [
       "error",
       {

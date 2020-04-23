@@ -9,6 +9,7 @@ const MainLayout = props => {
   return (
     <div>
       <h1 className="blueTheme">
+        123ttt
         <span className={TestLayout.error}>我是全局Layout</span>
       </h1>
       {children}
