@@ -1,3 +1,3 @@
 module.exports = {
-  ...require("./auth.js"),
+  ...require("./auth.js")
 };

@@ -1,7 +1,7 @@
 const resolvers = {
   Query: {
-    hello: (parent, args, context, info) => 'world',
-  },
+    hello: (parent, args, context, info) => "world"
+  }
 };
 
 module.exports = resolvers;

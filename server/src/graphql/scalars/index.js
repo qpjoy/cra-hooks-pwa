@@ -1,3 +1,3 @@
 module.exports = {
-  ...require("./date.js"),
+  ...require("./date.js")
 };
