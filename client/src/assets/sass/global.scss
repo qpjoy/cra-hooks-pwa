@@ -1,7 +1,8 @@
 @import-normalize;
-@import "reset.scss";
-@import "variables.scss";
-@import "mixin.scss";
+@import 'reset.scss';
+@import 'variables.scss';
+@import 'mixin.scss';
+@import 'animation.scss';
 
 .global {
   font-size: 20px;

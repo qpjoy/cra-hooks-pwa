@@ -1,11 +1,18 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
-import Routers from "./routers";
+import getApolloClient from "@/apollo/apolloClient";
+import Container from "./Container";
 
-function App() {
-  console.log("test");
+export default function App() {
+  const [client, setClient] = useState(null);
+  const [loading, setLoading] = useState(true);
 
-  return <Routers />;
+  useEffect(() => {
+    getApolloClient().then(client => {
+      setClient(client);
+      setLoading(false);
+    });
+  }, []);
+
+  return <Container client={client} loading={loading} />;
 }
-
-export default App;

@@ -1,0 +1,27 @@
+{
+  "name": "koa-apollo-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://2aa9e3e2d5e4d8754e0bd0126ebfe5773e75c32c@github.com/qpjoy/koa-apollo-server.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/qpjoy/koa-apollo-server/issues"
+  },
+  "homepage": "https://github.com/qpjoy/koa-apollo-server#readme",
+  "dependencies": {
+    "apollo-server-koa": "^2.12.0",
+    "dataloader": "^2.0.0",
+    "graphql": "^15.0.0",
+    "koa": "^2.11.0",
+    "moment": "^2.24.0"
+  }
+}

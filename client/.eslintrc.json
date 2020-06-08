@@ -5,6 +5,7 @@
     "browser": true,
     "node": true
   },
+  "plugins": ["react-hooks"],
   "extends": [
     "react-app",
     "plugin:react/recommended",
@@ -33,6 +34,8 @@
     "prefer-rest-params": "off",
     "no-restricted-globals": "off",
     "no-param-reassign": "off",
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn",
     "eslint-comments/no-unused-disable": "off",
     "eslint-comments/no-unlimited-disable": "off",
     "node/no-extraneous-import": "off",

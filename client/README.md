@@ -31,3 +31,8 @@
 ### workbox
 
 1. yarn add workbox-webpack-plugin react-app-rewire-workbox
+
+### apollo-client
+
+1. yarn add apollo-client apollo-cache-inmemory @apollo/react-hooks apollo-cache-persist graphql graphql-tag apollo-link-http
+2. yarn add isomorphic-fetch
